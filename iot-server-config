@@ -1,0 +1,8 @@
+#add iM871a-usb to fixed usb port
+sudo nano /etc/udev/rules.d/50-usb.rules
+SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="IM871A"
+
+#command to run iM871a meter with weetmuts/wmbusmeters app
+./build/wmbusmeters --robot=json --t1 /dev/ttyIM871A ColdWater supercom587 20586707 "" WarmWater supercom587 20586712 ""
+#send result to socket
+#./build/wmbusmeters --robot=json --t1 /dev/ttyIM871A ColdWater supercom587 20586707 "" WarmWater supercom587 20586712 "" > /dev/tcp/172./port
